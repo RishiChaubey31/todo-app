@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your todos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script>
+       
+    let globalid=1;
+    function MarkAsDone(todoid){
+        const parent=document.getElementById(todoid);
+        parent.children[2].innerHTML="Done!";
+       
+
+    }
+    function createchild(title,description,id){
+        const child=document.createElement("div");
+        const child1=document.createElement("div");
+        child1.innerHTML=title;
+        const child2=document.createElement("div");
+        child2.innerHTML=description;
+        const child3=document.createElement("button");
+        child3.innerHTML="mark as done!";
+        child3.setAttribute("style", "background-color: rgb(248, 116, 0); color: blue; font-weight: 600;");
+        child3.setAttribute("onclick",`MarkAsDone(${id})`)
+        child1.setAttribute("style","font-weight:bold;font-family:cursive");
+        child2.setAttribute("style","font-weight:bold;font-family:cursive");
+        child.append(child1);
+        child.append(child2);
+        child.append(child3);
+        child.setAttribute("id",id);
+        return child;
+    }
+   function addtodo(){
+   const title=document.getElementById("title").value;
+   const description=document.getElementById("description").value;
+   const parent= document.getElementById("todos");
+   parent.appendChild(createchild(title,description,globalid++));
+    }
+  
+    </script>
+    <div id="whole_content">
+        <div id="container">
+        <input id="title" type="text" placeholder="title here" >
+        <input id="description" type="text" placeholder="description here">
+        <button id="button" onclick="addtodo()" >add todo</button>
+        </div>
+        <div id="todos"> </div>
+
+    </div>
+</body>
+</html>
